@@ -22,7 +22,9 @@ const addCourse = async (req, res) => {
 //Get reCourset of all Courses
 
 const getCourse = async (req, res) => {
-  const courses = await Course.find({});
+  const {page} = req.query || 1
+  const limit = 3
+  const courses = await Course.find({}).limit(limit * 1).skip((page - 1) * limit);
   res.json(courses);
 };
 

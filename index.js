@@ -7,6 +7,7 @@ const courseRoutes = require("./routes/course");
 const instituteRoutes = require("./routes/institute");
 const studentRoutes = require("./routes/student");
 const teacherRoutes = require("./routes/teacher");
+const userRoutes = require("./routes/user");
 
 //express app
 const app = express();
@@ -29,6 +30,7 @@ app.use("/course" , courseRoutes);
 app.use("/institute" , instituteRoutes);
 app.use("/student" , studentRoutes);
 app.use("/teacher" , teacherRoutes);
+app.use("/user" , userRoutes);
 
 
 
