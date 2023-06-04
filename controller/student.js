@@ -40,21 +40,21 @@ const getOneStudent = async (req, res) => {
 
 // // delete Student
 
-// const deleteStudent = async (req, res) => {
-//   const { id } = req.params;
+const deleteStudent = async (req, res) => {
+  const { id } = req.params;
 
-//   if (!mongoose.Types.ObjectId.isValid(id)) {
-//     return res.json({ error: "No such Student" });
-//   }
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    return res.json({ error: "No such Student" });
+  }
 
-//   const Students = await Student.findOneAndDelete({ _id: id });
+  const Students = await Student.findOneAndDelete({ _id: id });
 
-//   if (!Students) {
-//     return res.json({ error: "No such Student" });
-//   }
+  if (!Students) {
+    return res.json({ error: "No such Student" });
+  }
 
-//   res.json(Students);
-// };
+  res.json(Students);
+};
 
 // //delete many Students
 
@@ -70,26 +70,26 @@ const getOneStudent = async (req, res) => {
 
 // // update Student
 
-// const updateStudent = async (req, res) => {
-//   const { id } = req.params;
+const updateStudent = async (req, res) => {
+  const { id } = req.params;
 
-//   if (!mongoose.Types.ObjectId.isValid(id)) {
-//     return res.json({ error: "No such Student" });
-//   }
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    return res.json({ error: "No such Student" });
+  }
 
-//   const Students = await Student.findOneAndUpdate(
-//     { _id: id },
-//     {
-//       ...req.body,
-//     }
-//   );
+  const Students = await Student.findOneAndUpdate(
+    { _id: id },
+    {
+      ...req.body,
+    }
+  );
 
-//   if (!Students) {
-//     return res.json({ error: "No such Student" });
-//   }
+  if (!Students) {
+    return res.json({ error: "No such Student" });
+  }
 
-//   res.json(Students);
-// };
+  res.json(Students);
+};
 
 // // Approve Student by user
 // const approveStudent = async (req, res) => {
@@ -116,5 +116,7 @@ const getOneStudent = async (req, res) => {
 module.exports = {
   getOneStudent,
   getStudent,
-  addStudent
+  addStudent,
+  deleteStudent,
+  updateStudent
 };

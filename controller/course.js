@@ -22,9 +22,10 @@ const addCourse = async (req, res) => {
 //Get reCourset of all Courses
 
 const getCourse = async (req, res) => {
-  const {page} = req.query || 1
-  const limit = 3
-  const courses = await Course.find({}).limit(limit * 1).skip((page - 1) * limit);
+  const {pageNumber} = req.query || 1
+  const pageSize = 3
+  // const courses = await Course.find({});
+  const courses = await Course.find({}).limit(pageSize).skip((pageNumber - 1) * pageSize);
   res.json(courses);
 };
 
@@ -38,23 +39,23 @@ const getOneCourse = async (req, res) => {
   res.json(courses);
 };
 
-// // delete Course
+// delete Course
 
-// const deleteCourse = async (req, res) => {
-//   const { id } = req.params;
+const deleteCourse = async (req, res) => {
+  const { id } = req.params;
 
-//   if (!mongoose.Types.ObjectId.isValid(id)) {
-//     return res.json({ error: "No such Course" });
-//   }
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    return res.json({ error: "No such Course" });
+  }
 
-//   const Courses = await Course.findOneAndDelete({ _id: id });
+  const Courses = await Course.findOneAndDelete({ _id: id });
 
-//   if (!Courses) {
-//     return res.json({ error: "No such Course" });
-//   }
+  if (!Courses) {
+    return res.json({ error: "No such Course" });
+  }
 
-//   res.json(Courses);
-// };
+  res.json(Courses);
+};
 
 // //delete many Courses
 
@@ -70,26 +71,26 @@ const getOneCourse = async (req, res) => {
 
 // // update Course
 
-// const updateCourse = async (req, res) => {
-//   const { id } = req.params;
+const updateCourse = async (req, res) => {
+  const { id } = req.params;
 
-//   if (!mongoose.Types.ObjectId.isValid(id)) {
-//     return res.json({ error: "No such Course" });
-//   }
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    return res.json({ error: "No such Course" });
+  }
 
-//   const Courses = await Course.findOneAndUpdate(
-//     { _id: id },
-//     {
-//       ...req.body,
-//     }
-//   );
+  const Courses = await Course.findOneAndUpdate(
+    { _id: id },
+    {
+      ...req.body,
+    }
+  );
 
-//   if (!Courses) {
-//     return res.json({ error: "No such Course" });
-//   }
+  if (!Courses) {
+    return res.json({ error: "No such Course" });
+  }
 
-//   res.json(Courses);
-// };
+  res.json(Courses);
+};
 
 // // Approve Course by user
 // const approveCourse = async (req, res) => {
@@ -116,5 +117,8 @@ const getOneCourse = async (req, res) => {
 module.exports = {
   getOneCourse,
   getCourse,
-  addCourse
+  addCourse,
+  deleteCourse,
+  updateCourse
+
 };

@@ -38,21 +38,21 @@ const getOneInst = async (req, res) => {
 
 // // delete Institute
 
-// const deleteInstitute = async (req, res) => {
-//   const { id } = req.params;
+const deleteInstitute = async (req, res) => {
+  const { id } = req.params;
 
-//   if (!mongoose.Types.ObjectId.isValid(id)) {
-//     return res.json({ error: "No such Institute" });
-//   }
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    return res.json({ error: "No such Institute" });
+  }
 
-//   const Institutes = await Institute.findOneAndDelete({ _id: id });
+  const Institutes = await Institute.findOneAndDelete({ _id: id });
 
-//   if (!Institutes) {
-//     return res.json({ error: "No such Institute" });
-//   }
+  if (!Institutes) {
+    return res.json({ error: "No such Institute" });
+  }
 
-//   res.json(Institutes);
-// };
+  res.json(Institutes);
+};
 
 // //delete many Institutes
 
@@ -68,26 +68,26 @@ const getOneInst = async (req, res) => {
 
 // // update Institute
 
-// const updateInstitute = async (req, res) => {
-//   const { id } = req.params;
+const updateInstitute = async (req, res) => {
+  const { id } = req.params;
 
-//   if (!mongoose.Types.ObjectId.isValid(id)) {
-//     return res.json({ error: "No such Institute" });
-//   }
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    return res.json({ error: "No such Institute" });
+  }
 
-//   const Institutes = await Institute.findOneAndUpdate(
-//     { _id: id },
-//     {
-//       ...req.body,
-//     }
-//   );
+  const Institutes = await Institute.findOneAndUpdate(
+    { _id: id },
+    {
+      ...req.body,
+    }
+  );
 
-//   if (!Institutes) {
-//     return res.json({ error: "No such Institute" });
-//   }
+  if (!Institutes) {
+    return res.json({ error: "No such Institute" });
+  }
 
-//   res.json(Institutes);
-// };
+  res.json(Institutes);
+};
 
 // // Approve Institute by user
 // const approveInstitute = async (req, res) => {
@@ -114,5 +114,7 @@ const getOneInst = async (req, res) => {
 module.exports = {
     getOneInst,
     getInst,
-    addInst
+    addInst,
+    deleteInstitute,
+    updateInstitute
 };

@@ -4,8 +4,8 @@ const mongoose = require("mongoose");
 
 //creating jwt token
 
-const createToken = (_id) => {
-    return jwt.sign({ _id }, process.env.SECRET, { expiresIn: "3d" });
+const createToken = (user) => {
+    return jwt.sign({ user }, process.env.SECRET, { expiresIn: "3d" });
 };
 
 // post request of add user
@@ -107,7 +107,7 @@ const loginUser = async (req, res) => {
 
             //create jsonwebtoken
 
-            const token = createToken(user._id);
+            const token = createToken(user);
             res.status(200).json({ user: user, token });
         } catch (error) {
             res.status(400).json(error.message);
@@ -115,4 +115,19 @@ const loginUser = async (req, res) => {
     }
 };
 
-module.exports = { addUser, getUser, deleteUser, updateUser, loginUser };
+const protectToken = async (req, res, next) => {
+    let token = req.headers.authorization;
+    jwt.verify(token.split(' ')[1], process.env.SECRET, (err, decoded) => {
+        if (err) {
+            res.json('error occured')
+            console.log('decodes===>', decoded)
+            console.log('token===>', token)
+        }
+        else {
+            console.log(decoded)
+            next()
+        }
+    })
+}
+
+module.exports = { addUser, getUser, deleteUser, updateUser, loginUser, protectToken };

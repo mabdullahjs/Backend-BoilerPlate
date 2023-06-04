@@ -36,21 +36,21 @@ const getOneTeacher = async (req, res) => {
 
 // // delete Teacher
 
-// const deleteTeacher = async (req, res) => {
-//   const { id } = req.params;
+const deleteTeacher = async (req, res) => {
+  const { id } = req.params;
 
-//   if (!mongoose.Types.ObjectId.isValid(id)) {
-//     return res.json({ error: "No such Teacher" });
-//   }
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    return res.json({ error: "No such Teacher" });
+  }
 
-//   const Teachers = await Teacher.findOneAndDelete({ _id: id });
+  const Teachers = await Teacher.findOneAndDelete({ _id: id });
 
-//   if (!Teachers) {
-//     return res.json({ error: "No such Teacher" });
-//   }
+  if (!Teachers) {
+    return res.json({ error: "No such Teacher" });
+  }
 
-//   res.json(Teachers);
-// };
+  res.json(Teachers);
+};
 
 // //delete many Teachers
 
@@ -66,26 +66,26 @@ const getOneTeacher = async (req, res) => {
 
 // // update Teacher
 
-// const updateTeacher = async (req, res) => {
-//   const { id } = req.params;
+const updateTeacher = async (req, res) => {
+  const { id } = req.params;
 
-//   if (!mongoose.Types.ObjectId.isValid(id)) {
-//     return res.json({ error: "No such Teacher" });
-//   }
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    return res.json({ error: "No such Teacher" });
+  }
 
-//   const Teachers = await Teacher.findOneAndUpdate(
-//     { _id: id },
-//     {
-//       ...req.body,
-//     }
-//   );
+  const Teachers = await Teacher.findOneAndUpdate(
+    { _id: id },
+    {
+      ...req.body,
+    }
+  );
 
-//   if (!Teachers) {
-//     return res.json({ error: "No such Teacher" });
-//   }
+  if (!Teachers) {
+    return res.json({ error: "No such Teacher" });
+  }
 
-//   res.json(Teachers);
-// };
+  res.json(Teachers);
+};
 
 // // Approve Teacher by user
 // const approveTeacher = async (req, res) => {
@@ -112,5 +112,7 @@ const getOneTeacher = async (req, res) => {
 module.exports = {
     getOneTeacher,
     getTeacher,
-    addTeacher
+    addTeacher,
+    updateTeacher,
+    deleteTeacher
 };
